@@ -10,7 +10,7 @@ public class enemy : MonoBehaviour
     [SerializeField] float followRadius;
     NavMeshAgent agent;
 
-    Vector3 randomTarget, currentPosition;
+    Vector3 randomTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,14 +32,14 @@ public class enemy : MonoBehaviour
             followPlayer();
         }
 
-        if (Vector3.Distance(transform.position, player.position) < 1)
-        {
-            attack();
-        }
-
         if (Vector3.Distance(transform.position, randomTarget) < 1)
         {
             randomTarget = new Vector3(transform.position.x + (Random.Range(-10, 10)), transform.position.y, transform.position.z + (Random.Range(-10, 10)));
+        }
+
+        if(Vector3.Distance(player.position,transform.position) < 2)
+        {
+            attack();
         }
     }
 

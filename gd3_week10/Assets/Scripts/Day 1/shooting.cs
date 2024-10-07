@@ -19,6 +19,7 @@ public class shooting : MonoBehaviour
     float nextFire;
 
     GameObject cannonB;
+    public GameObject bloodSplatter;
 
 
     // Start is called before the first frame update
@@ -38,9 +39,9 @@ public class shooting : MonoBehaviour
 
         _lr.SetPosition(0, gunEnd.position);
 
-        if (Input.GetMouseButtonDown(0) && Time.time >= nextFire)
+        if (Input.GetMouseButton(0) && Time.time >= nextFire)
         {
-            nextFire = Time.time + fireRate;
+            nextFire = Time.time + 1/fireRate;
             StartCoroutine(shootingEffect());
 
             //raycast stuff
@@ -61,6 +62,7 @@ public class shooting : MonoBehaviour
                 if(hit.rigidbody != null)
                 {
                     hit.rigidbody.AddForce((hit.point - rayOrigin).normalized * hitForce, ForceMode.Impulse);
+                    Destroy(Instantiate(bloodSplatter, hit.point, Quaternion.LookRotation(hit.normal)),7);
                 }
 
                 ragdollTrigger _ragdollTrigger = hit.transform.GetComponent<ragdollTrigger>();

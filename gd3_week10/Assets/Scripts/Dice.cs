@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Dice : MonoBehaviour
 {
@@ -25,9 +26,16 @@ public class Dice : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            GetComponent<Rigidbody>().AddTorque(Random.Range(-15, 15), Random.Range(-15, 15), Random.Range(-15, 15), ForceMode.Impulse);
+            // GetComponent<Rigidbody>().AddTorque(Random.Range(-15, 15), Random.Range(-15, 15), Random.Range(-15, 15), ForceMode.Impulse);
 
             //GetComponent<Rigidbody>().AddForce(0, 5, 0, ForceMode.Impulse);
+
+            //transform.DOMove(transform.position + transform.forward, 0.5f);
+            transform.DOJump(transform.position + transform.forward * 10, 1, 5,10,false);
+
+            Camera.main.DOShakePosition(0.2f, 1,100);
+
+           
         }
     }
 

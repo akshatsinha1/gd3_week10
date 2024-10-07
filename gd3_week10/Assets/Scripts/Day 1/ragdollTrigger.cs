@@ -18,7 +18,9 @@ public class ragdollTrigger : MonoBehaviour
         foreach (Rigidbody ragdollRB in GetComponentsInChildren<Rigidbody>())
         {
             ragdollRB.isKinematic = false;
-            GetComponent<Collider>().enabled = false;
         }
+
+        GetComponent<Collider>().enabled = false;
+
     }
 }
